@@ -1,0 +1,24 @@
+.fixFlow {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+/* .hideText {
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  
+    The number of lines to be displayed
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  } */
+
+.hideText {
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
