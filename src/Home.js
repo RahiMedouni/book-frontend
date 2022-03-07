@@ -188,16 +188,16 @@ function Home() {
   };
 
   const updatePurchaseWish = (title) => {
-    let updateIndex = books.findIndex((item) => item.title === title);
+    let updateIndex = wishedList.findIndex((item) => item.title === title);
 
-    let newPurchaseWish = [...books];
+    let newPurchaseWish = [...wishedList];
 
     newPurchaseWish[updateIndex] = {
       ...newPurchaseWish[updateIndex],
       addedToPurchase: !newPurchaseWish[updateIndex].addedToPurchase,
     };
 
-    setBooks(newPurchaseWish);
+    setWishedList(newPurchaseWish);
   };
 
   const handleChange = (e) => {
@@ -205,6 +205,11 @@ function Home() {
   };
   const addToCart = (index) => {
     setPurchasedBooks([...purchasedBooks, books[index]]);
+  };
+
+  const addBookToCart = (bookTitle) => {
+    let bookIndex  = books.findIndex((book) => book.title === bookTitle);
+    setPurchasedBooks([...purchasedBooks, books[bookIndex]]);
   };
 
   const addToWish = (index) => {
@@ -277,6 +282,7 @@ function Home() {
                   wishedList={wishedList}
                   addToWish={addToWish}
                   addToCart={addToCart}
+                  addBookToCart={addBookToCart}
                   updateWish={updateWish}
                   handleDelete={handleDelete}
                   updatePurchaseWish={updatePurchaseWish}

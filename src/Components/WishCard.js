@@ -53,7 +53,7 @@ const WishCard = (props) => {
               variant="danger"
               style={{ height: 30, width: 70, fontSize: 11, float: "right" }}
               onClick={() => {
-                props.addToCart(props.index);
+                props.addBookToCart(props.book.title);
                 props.updatePurchaseWish(props.book.title);
               }}
             >
