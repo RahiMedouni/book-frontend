@@ -1,33 +1,35 @@
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const PostAdd = ({ handleAddPost }) => {
+const AddStory = ({ handleAdd }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const [titlePost, setTitle] = useState("");
-  const [typePost, setType] = useState("");
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
+  const [rate, setRate] = useState(0);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const newPost = {
+    const newStory = {
       id: Math.random,
-      titlePost,
-      typePost,
+      title,
       description,
+      posterUrl: url,
+      rate,
     };
-    handleAddPost(newPost);
+    handleAdd(newStory);
   };
   return (
-    <div>
+    <div className="adding-story">
       <Button variant="primary" onClick={handleShow}>
-        Add Post
+        Add Story
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Post</Modal.Title>
+          <Modal.Title>Add Story</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit}>
@@ -37,26 +39,34 @@ const PostAdd = ({ handleAddPost }) => {
               className="form-control"
               placeholder="enter title here"
               onChange={(e) => setTitle(e.target.value)}
-              value={titlePost}
-            />
-            type:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="type of story"
-              onChange={(e) => setType(e.target.value)}
-              value={typePost}
+              value={title}
             />
             DESCRIPTION:
             <input
               type="text"
               className="form-control"
-              placeholder="Be creative..."
+              placeholder="enter description here"
               onChange={(e) => setDescription(e.target.value)}
               value={description}
             />
+            POSTERURL:
+            <input
+              type="url"
+              className="form-control"
+              placeholder="enter url here"
+              onChange={(e) => setUrl(e.target.value)}
+              value={url}
+            />
+            RATE:
+            <input
+              type="text"
+              className="form-control"
+              placeholder="enter rate here"
+              onChange={(e) => setRate(e.target.value)}
+              value={rate}
+            />
             <Button variant="primary" type="submit">
-              Share Post
+              Save Story
             </Button>
           </form>
         </Modal.Body>
@@ -70,4 +80,4 @@ const PostAdd = ({ handleAddPost }) => {
   );
 };
 
-export default PostAdd;
+export default AddStory;

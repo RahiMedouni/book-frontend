@@ -66,7 +66,7 @@ const WishCard = (props) => {
               variant="outline-Danger"
               style={{ height: 30, width: 70, fontSize: 11, float: "right" }}
               onClick={() => {
-                props.handleDelete(props.index);
+                props.handleDelete(props.book.title);
                 props.updatePurchaseWish(props.book.title);
               }}
             >

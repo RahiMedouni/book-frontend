@@ -13,6 +13,7 @@ const BookList = (props) => {
           addToWish={props.addToWish}
           updateWish={props.updateWish}
           updatePurchase={props.updatePurchase}
+          updatePurchaseWish={props.updatePurchaseWish}
           handleDeleteWish={props.handleDeleteWish}
           handleDelete={props.handleDelete}
         />

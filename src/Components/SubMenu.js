@@ -72,7 +72,7 @@ class Sider extends React.Component {
             <Menu.Item key="5">
               <Link to="/home/posts">Posts</Link>
             </Menu.Item>
-            <Menu.Item key="6">Option 6</Menu.Item>
+            <Menu.Item key="6">ggggg</Menu.Item>
             <SubMenu key="sub3" title="Submenu">
               <Menu.Item key="7">Option 7</Menu.Item>
               <Menu.Item key="8">Option 8</Menu.Item>

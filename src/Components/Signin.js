@@ -40,7 +40,7 @@ export default function SignIn() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        navigate("/dashboard");
+        navigate("/home");
       })
       .catch(function (error) {
         console.log(error);
@@ -48,10 +48,10 @@ export default function SignIn() {
   };
 
   return (
-    <div style={{ backgroundColor: "#D3D3D3" }}>
-      <ThemeProvider theme={theme}>
-        <Container component="main" maxWidth="xs">
-          <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <div style={{ backgroundColor: "#D3D3D3", padding: 20, paddingTop: 0 }}>
           <Box
             sx={{
               marginTop: 8,
@@ -114,9 +114,9 @@ export default function SignIn() {
               </Grid>
             </Box>
           </Box>
-          {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
-        </Container>
-      </ThemeProvider>
-    </div>
+        </div>
+        {/* <Copyright sx={{ mt: 8, mb: 4 }} /> */}
+      </Container>
+    </ThemeProvider>
   );
 }

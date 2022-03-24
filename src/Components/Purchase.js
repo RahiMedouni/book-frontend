@@ -38,6 +38,7 @@ const Purchase = (props) => {
               onClick={() => {
                 props.handleDelete(props.book.title);
                 props.updatePurchase(props.index);
+                props.updatePurchaseWish(props.index);
               }}
             >
               X

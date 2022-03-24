@@ -10,7 +10,6 @@ import SubMenu from "./Components/SubMenu";
 import BookDetails from "./Components/BookDetails";
 import UserProfile from "./Components/UserProfile";
 import WishedBooks from "./Components/WishedBooks";
-import PostList from "./Components/PostList";
 import Darkmode from "darkmode-js";
 import { Link, animateScroll as scroll } from "react-scroll";
 
@@ -51,14 +50,6 @@ const BooksList = ({
         handleDeleteWish={handleDeleteWish}
         handleDelete={handleDelete}
       />
-    </div>
-  );
-};
-
-const PostsList = ({ posts, titlePost }) => {
-  return (
-    <div>
-      <PostList posts={posts} />
     </div>
   );
 };
@@ -152,14 +143,24 @@ function Home() {
 
   const [title, setTitle] = useState("");
 
-  const [posts, setPosts] = useState([
-    {
-      titlePost: "Star Wars: Episode IV - A New Hope",
-      type: "drama",
-      description:
-        "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-    },
-  ]);
+  useEffect(() => {
+    var axios = require("axios");
+
+    var config = {
+      method: "get",
+      url: "https://www.googleapis.com/books/v1/volumes?q=react=free-ebooks&key=AIzaSyCERRTM_eU0wmEuf-QhPdMZbNW5c22l5Eo",
+      headers: {},
+    };
+
+    axios(config)
+      .then(function (response) {
+        console.log(JSON.stringify(response.data));
+        setBooks(response.data.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  });
 
   useEffect(() => {
     setBooks(shuffleArray(books));
@@ -208,7 +209,7 @@ function Home() {
   };
 
   const addBookToCart = (bookTitle) => {
-    let bookIndex  = books.findIndex((book) => book.title === bookTitle);
+    let bookIndex = books.findIndex((book) => book.title === bookTitle);
     setPurchasedBooks([...purchasedBooks, books[bookIndex]]);
   };
 
@@ -225,10 +226,6 @@ function Home() {
 
   const handleDeleteWish = (bookWish) => {
     setWishedList(wishedList.filter((book) => book.title !== bookWish));
-  };
-
-  const handleAddPost = (newPost) => {
-    setPosts([...posts, newPost]);
   };
 
   return (
@@ -291,12 +288,6 @@ function Home() {
               }
             />
             <Route path="/profile" element={<UserProfile />} />
-            <Route
-              path="/posts"
-              element={
-                <PostsList posts={posts} handleAddPost={handleAddPost} />
-              }
-            />
           </Routes>
         </div>
       </div>
