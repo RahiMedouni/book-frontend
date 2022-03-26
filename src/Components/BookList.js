@@ -16,6 +16,7 @@ const BookList = (props) => {
           updatePurchaseWish={props.updatePurchaseWish}
           handleDeleteWish={props.handleDeleteWish}
           handleDelete={props.handleDelete}
+          handleAdminDelete={props.handleAdminDelete}
         />
       ))}
     </div>

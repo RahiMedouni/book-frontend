@@ -57,14 +57,6 @@ const AddStory = ({ handleAdd }) => {
               onChange={(e) => setUrl(e.target.value)}
               value={url}
             />
-            RATE:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter rate here"
-              onChange={(e) => setRate(e.target.value)}
-              value={rate}
-            />
             <Button variant="primary" type="submit">
               Save Story
             </Button>

@@ -15,8 +15,8 @@ function Welcome() {
       <Link to="/signuptranslator">
         <h3>Sign Up translator</h3>
       </Link>
-      <Link to="/createpost">
-        <h3>Create Post</h3>
+      <Link to="/quiz">
+        <h3>Take Quiz</h3>
       </Link>
     </div>
   );

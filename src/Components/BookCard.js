@@ -15,6 +15,16 @@ const BookCard = (props) => {
       }}
     >
       <Card.Body>
+        <span>
+          <Button
+            variant="danger"
+            onClick={() => {
+              props.handleAdminDelete(props.book.title);
+            }}
+          >
+            X
+          </Button>
+        </span>
         {!props.book?.addedToWish && (
           <Button
             variant="light"

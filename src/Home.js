@@ -11,6 +11,7 @@ import BookDetails from "./Components/BookDetails";
 import UserProfile from "./Components/UserProfile";
 import WishedBooks from "./Components/WishedBooks";
 import Darkmode from "darkmode-js";
+import axios from "axios";
 import { Link, animateScroll as scroll } from "react-scroll";
 
 new Darkmode().showWidget();
@@ -33,6 +34,7 @@ const BooksList = ({
   updateWish,
   handleDeleteWish,
   handleDelete,
+  handleAdminDelete,
   updatePurchase,
   updatePurchaseWish,
 }) => {
@@ -49,6 +51,7 @@ const BooksList = ({
         updatePurchaseWish={updatePurchaseWish}
         handleDeleteWish={handleDeleteWish}
         handleDelete={handleDelete}
+        handleAdminDelete={handleAdminDelete}
       />
     </div>
   );
@@ -143,24 +146,24 @@ function Home() {
 
   const [title, setTitle] = useState("");
 
-  useEffect(() => {
-    var axios = require("axios");
+  // useEffect(() => {
+  //   var axios = require("axios");
 
-    var config = {
-      method: "get",
-      url: "https://www.googleapis.com/books/v1/volumes?q=react=free-ebooks&key=AIzaSyCERRTM_eU0wmEuf-QhPdMZbNW5c22l5Eo",
-      headers: {},
-    };
+  //   var config = {
+  //     method: "get",
+  //     url: "https://www.googleapis.com/books/v1/volumes?q=react=free-ebooks&key=AIzaSyCERRTM_eU0wmEuf-QhPdMZbNW5c22l5Eo",
+  //     headers: {},
+  //   };
 
-    axios(config)
-      .then(function (response) {
-        console.log(JSON.stringify(response.data));
-        setBooks(response.data.results);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  });
+  //   axios(config)
+  //     .then(function (response) {
+  //       console.log(JSON.stringify(response.data));
+  //       setBooks(response.data.results);
+  //     })
+  //     .catch(function (error) {
+  //       console.log(error);
+  //     });
+  // });
 
   useEffect(() => {
     setBooks(shuffleArray(books));
@@ -224,6 +227,10 @@ function Home() {
     );
   };
 
+  const handleAdminDelete = (bookTitleAdmin) => {
+    setBooks(books.filter((book) => book.title !== bookTitleAdmin));
+  };
+
   const handleDeleteWish = (bookWish) => {
     setWishedList(wishedList.filter((book) => book.title !== bookWish));
   };
@@ -250,6 +257,7 @@ function Home() {
                   addToWish={addToWish}
                   updateWish={updateWish}
                   handleDeleteWish={handleDeleteWish}
+                  handleAdminDelete={handleAdminDelete}
                   handleDelete={handleDelete}
                   updatePurchase={updatePurchase}
                   updatePurchaseWish={updatePurchaseWish}

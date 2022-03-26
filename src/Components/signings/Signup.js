@@ -64,7 +64,7 @@ export default function SignUp() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        navigate("/home");
+        navigate("/home/account");
         setIsFetchingSignup(false);
       })
       .catch(function (error) {
