@@ -4,7 +4,6 @@ import * as React from "react";
 import { useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
-import Home from "./Home";
 
 const ColorModeContext = React.createContext({ ToggleColorMode: () => {} });
 
@@ -67,7 +66,6 @@ function ToggleColorMode() {
     <ColorModeContext.Provider value={colorMode}>
       <ThemeProvider theme={theme}>
         <DarkTheme />
-        <Home />
       </ThemeProvider>
     </ColorModeContext.Provider>
   );

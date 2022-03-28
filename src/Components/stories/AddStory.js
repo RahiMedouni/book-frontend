@@ -6,18 +6,14 @@ const AddStory = ({ handleAdd }) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [url, setUrl] = useState("");
-  const [rate, setRate] = useState(0);
+  const [thoughts, setThoughts] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newStory = {
       id: Math.random,
       title,
-      description,
-      posterUrl: url,
-      rate,
+      thoughts,
     };
     handleAdd(newStory);
   };
@@ -33,7 +29,7 @@ const AddStory = ({ handleAdd }) => {
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={handleSubmit}>
-            TITLE:
+            Title:
             <input
               type="text"
               className="form-control"
@@ -41,21 +37,13 @@ const AddStory = ({ handleAdd }) => {
               onChange={(e) => setTitle(e.target.value)}
               value={title}
             />
-            DESCRIPTION:
+            Your Thoughts:
             <input
               type="text"
               className="form-control"
-              placeholder="enter description here"
-              onChange={(e) => setDescription(e.target.value)}
-              value={description}
-            />
-            POSTERURL:
-            <input
-              type="url"
-              className="form-control"
-              placeholder="enter url here"
-              onChange={(e) => setUrl(e.target.value)}
-              value={url}
+              placeholder="enter thoughts here"
+              onChange={(e) => setThoughts(e.target.value)}
+              value={thoughts}
             />
             <Button variant="primary" type="submit">
               Save Story

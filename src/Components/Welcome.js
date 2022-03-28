@@ -9,11 +9,14 @@ function Welcome() {
       <Link to="/signin">
         <h3>Sign In</h3>
       </Link>
+      <Link to="/signinadmin">
+        <h3>Sign In Admin</h3>
+      </Link>
       <Link to="/signup">
         <h3>Sign Up</h3>
       </Link>
-      <Link to="/signuptranslator">
-        <h3>Sign Up translator</h3>
+      <Link to="/signupadmin">
+        <h3>Sign Up Admin</h3>
       </Link>
       <Link to="/quiz">
         <h3>Take Quiz</h3>

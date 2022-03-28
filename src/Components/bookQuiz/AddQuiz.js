@@ -15,7 +15,6 @@ const AddQuiz = ({ handleAdd }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newQuiz = {
-      id: Math.random,
       question,
       one,
       two,
@@ -37,48 +36,81 @@ const AddQuiz = ({ handleAdd }) => {
         <Modal.Body>
           <form onSubmit={handleSubmit}>
             Question:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="add question..."
-              onChange={(e) => setQuestion(e.target.value)}
-              value={question}
-            />
-            Option 1:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter description here"
-              onChange={(e) => setOne(e.target.value)}
-              value={One}
-            />
-            Option 2:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter description here"
-              onChange={(e) => setTwo(e.target.value)}
-              value={two}
-            />
-            Option 3:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter description here"
-              onChange={(e) => setThree(e.target.value)}
-              value={three}
-            />
-            Option 4:
-            <input
-              type="text"
-              className="form-control"
-              placeholder="enter description here"
-              onChange={(e) => setFour(e.target.value)}
-              value={Four}
-            />
-            <Button variant="primary" type="submit">
-              Save question
-            </Button>
+            <div className="row">
+              <div className="col-12">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="add question..."
+                  onChange={(e) => setQuestion(e.target.value)}
+                  value={question}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Option 1:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="enter description here"
+                  onChange={(e) => setOne(e.target.value)}
+                  value={one}
+                />
+                <input
+                  type="checkbox"
+                  className="form-check"
+                  onChange={(e) => setOne(e.target.value)}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Option 2:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="enter description here"
+                  onChange={(e) => setTwo(e.target.value)}
+                  value={two}
+                />
+                <input
+                  type="checkbox"
+                  className="form-check"
+                  onChange={(e) => setTwo(e.target.value)}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Option 3:</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="enter description here"
+                  onChange={(e) => setThree(e.target.value)}
+                  value={three}
+                />
+                <input
+                  type="checkbox"
+                  className="form-check"
+                  onChange={(e) => setThree(e.target.value)}
+                />
+              </div>
+              <div className="col-12">
+                <label className="form-label">Option 4:</label>
+
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="enter description here"
+                  onChange={(e) => setFour(e.target.value)}
+                  value={four}
+                />
+                <input
+                  type="checkbox"
+                  className="form-check"
+                  onChange={(e) => setFour(e.target.value)}
+                />
+              </div>
+              <Button variant="primary" type="submit">
+                Save question
+              </Button>
+            </div>
           </form>
         </Modal.Body>
         <Modal.Footer>
