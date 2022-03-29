@@ -17,7 +17,7 @@ import axios from "axios";
 
 const theme = createTheme();
 
-export default function SignUp() {
+export default function SignUp({ accountType }) {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
@@ -64,6 +64,7 @@ export default function SignUp() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        accountType("user");
         navigate("/home/account");
         setIsFetchingSignup(false);
       })

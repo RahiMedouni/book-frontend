@@ -36,30 +36,23 @@ const Header = ({ title, handleChange, rate, ratingChanged }) => {
             <Nav.Link href="#action1">Contact Us</Nav.Link>
             <Nav.Link href="#action2">About Us</Nav.Link>
 
-            <NavDropdown title="Sign up" id="navbarScrollingDropdown">
+            <NavDropdown title="Sign in" id="navbarScrollingDropdown">
               <NavDropdown
-                title={<span style={{ color: "black" }}>Reader Account</span>}
+                title={<span style={{ color: "black" }}>User Account</span>}
               >
                 <NavDropdown.Item href="#actionadult">
-                  Create adult account
+                  <Link to="/home/signin">Sign in as reader</Link>
                 </NavDropdown.Item>
                 <NavDropdown.Item href="#action4">
-                  Create child account
+                  <Link to="/home/signinwriter">Sign in as writer</Link>
+                </NavDropdown.Item>
+                <NavDropdown.Item href="#action3">
+                  <Link to="/Home/signinadmin">Sign in as admin</Link>
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action3">
-                Create writer account
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action4">
-                Create seller account
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action5">
-                Create editor account
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action6">
-                Create translator account
+                <Link to="/">Logout</Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
@@ -72,7 +65,6 @@ const Header = ({ title, handleChange, rate, ratingChanged }) => {
               onChange={handleChange}
               value={title}
             />
-            <Button variant="outline-success">Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>

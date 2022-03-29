@@ -21,7 +21,7 @@ import axios from "axios";
 
 const theme = createTheme();
 
-export default function SignUpAdmin() {
+export default function SignUpAdmin({ accountType }) {
   const [adminname, setAdminname] = useState("");
   const [email, setEmail] = useState("");
   const [task, setTask] = useState("");
@@ -74,6 +74,7 @@ export default function SignUpAdmin() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        accountType("admin");
         navigate("/home/account");
         setIsFetchingSignup(false);
       })

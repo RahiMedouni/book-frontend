@@ -14,6 +14,7 @@ const BookList = (props) => {
           updateWish={props.updateWish}
           updatePurchase={props.updatePurchase}
           updatePurchaseWish={props.updatePurchaseWish}
+          handleAddBook={props.handleAddBook}
           handleDeleteWish={props.handleDeleteWish}
           handleDelete={props.handleDelete}
           handleAdminDelete={props.handleAdminDelete}

@@ -54,7 +54,7 @@ const BookCard = (props) => {
         )}
         <Card.Img
           variant="top"
-          src={props.book.posterUrl}
+          src={props.book.coverUrl}
           style={{ height: 210, width: 150, marginLeft: 35 }}
         />
         <Card.Title className="hideText">
@@ -70,7 +70,7 @@ const BookCard = (props) => {
         </Card.Title>
 
         <p className="hideText">{props.book.price + "$"}</p>
-        <p className="hideText">{props.book.type}</p>
+        <p className="hideText">{props.book.category}</p>
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <Card.Text>
             <Ratestar />

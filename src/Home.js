@@ -10,6 +10,11 @@ import SubMenu from "./Components/SubMenu";
 import BookDetails from "./Components/BookDetails";
 import UserProfile from "./Components/UserProfile";
 import WishedBooks from "./Components/WishedBooks";
+import Signup from "./Components/signings/Signup";
+import Signin from "./Components/signings/Signin";
+import SignUpAdmin from "./Components/signings/SignUpAdmin";
+import SigninAdmin from "./Components/signings/SigninAdmin";
+import AddBook from "./Components/AddBook";
 import Darkmode from "darkmode-js";
 import axios from "axios";
 import { Link, animateScroll as scroll } from "react-scroll";
@@ -71,69 +76,90 @@ function shuffleArray(arr) {
 function Home() {
   const [books, setBooks] = useState([
     {
-      id: Math.random(),
       title: "Star Wars: Episode IV - A New Hope",
-      posterUrl:
+      author: "author one",
+      pages: 100,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl:
         "https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-      type: "horror",
-      price: "3.99",
+      category: "horror",
+      price: 3.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "Star Wars: Episode V - The Empire Strikes Back",
-      posterUrl:
+      author: "author one",
+      pages: 168,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl:
         "https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg",
-      type: "drama",
+      category: "drama",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "Star Wars: Episode VI - Return of the Jedi",
-      posterUrl:
+      author: "author one",
+      pages: 130,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl:
         "https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg",
-      type: "comedy",
+      category: "comedy",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "Star Wars: Episode VII - The Force Awakens",
-      posterUrl:
+      author: "author one",
+      pages: 112,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl:
         "https://m.media-amazon.com/images/M/MV5BOTAzODEzNDAzMl5BMl5BanBnXkFtZTgwMDU1MTgzNzE@._V1_SX300.jpg",
-      type: "drama",
+      category: "drama",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "peaky blinders",
-      posterUrl: "//pbs.twimg.com/media/ETAoYTMXgAA01qD.jpg",
-      type: "drama",
+      author: "author one",
+      pages: 455,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl: "//pbs.twimg.com/media/ETAoYTMXgAA01qD.jpg",
+      category: "drama",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "Game of thrones",
-      posterUrl:
+      author: "author one",
+      pages: 85,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl:
         "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F6%2F2015%2F11%2Fjs20-20tease.jpeg",
-      type: "fiction",
+      category: "fiction",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
     },
     {
-      id: Math.random(),
       title: "The good doctor",
-      posterUrl: "https://pbs.twimg.com/media/EbNkkiTXsAc2o3Y.jpg",
-      type: "horror",
+      author: "author one",
+      pages: 230,
+      isbn: "1111-111-1111-11",
+      description: "book descreption",
+      coverUrl: "https://pbs.twimg.com/media/EbNkkiTXsAc2o3Y.jpg",
+      category: "horror",
       price: 4.99,
       addedToWish: false,
       addedToPurchase: false,
@@ -145,6 +171,8 @@ function Home() {
   const [wishedList, setWishedList] = useState([]);
 
   const [title, setTitle] = useState("");
+
+  const [accountType, setAccountType] = useState("");
 
   // useEffect(() => {
   //   var axios = require("axios");
@@ -168,6 +196,48 @@ function Home() {
   useEffect(() => {
     setBooks(shuffleArray(books));
   }, []);
+
+  const accountTypeHandler = (type) => {
+    setAccountType(type);
+  };
+
+  const handleAddBook = (newBook) => {
+    setBooks([...books, newBook]);
+  };
+
+  const BooksAdminList = ({
+    books,
+    addToCart,
+    addToWish,
+    title,
+    updateWish,
+    handleDeleteWish,
+    handleDelete,
+    handleAddBook,
+    handleAdminDelete,
+    updatePurchase,
+    updatePurchaseWish,
+  }) => {
+    return (
+      <div>
+        <AddBook handleAddBook={handleAddBook} />
+        <BookList
+          books={books.filter((book) =>
+            book.title.toUpperCase().includes(title.toUpperCase())
+          )}
+          addToCart={addToCart}
+          addToWish={addToWish}
+          updateWish={updateWish}
+          updatePurchase={updatePurchase}
+          updatePurchaseWish={updatePurchaseWish}
+          handleAddBook={handleAddBook}
+          handleDeleteWish={handleDeleteWish}
+          handleDelete={handleDelete}
+          handleAdminDelete={handleAdminDelete}
+        />
+      </div>
+    );
+  };
 
   const updateWish = (index) => {
     let newBooks = [...books];
@@ -247,22 +317,54 @@ function Home() {
         <SubMenu />
         <div style={{ width: "100%", marginLeft: 250 }}>
           <Routes>
+            <Route
+              path="/signup"
+              element={<Signup accountType={accountTypeHandler} />}
+            />
+            <Route
+              path="/signin"
+              element={<Signin accountType={accountTypeHandler} />}
+            />
+            <Route
+              path="/signupadmin"
+              element={<SignUpAdmin accountType={accountTypeHandler} />}
+            />
+            <Route
+              path="/signinadmin"
+              element={<SigninAdmin accountType={accountTypeHandler} />}
+            />
             <Route path="/account" element={<WhatAccount />} />
             <Route
               path="/booklist"
               element={
-                <BooksList
-                  books={books}
-                  addToCart={addToCart}
-                  addToWish={addToWish}
-                  updateWish={updateWish}
-                  handleDeleteWish={handleDeleteWish}
-                  handleAdminDelete={handleAdminDelete}
-                  handleDelete={handleDelete}
-                  updatePurchase={updatePurchase}
-                  updatePurchaseWish={updatePurchaseWish}
-                  title={title}
-                />
+                accountType === "admin" ? (
+                  <BooksAdminList
+                    books={books}
+                    addToCart={addToCart}
+                    addToWish={addToWish}
+                    updateWish={updateWish}
+                    handleDeleteWish={handleDeleteWish}
+                    handleAdminDelete={handleAdminDelete}
+                    handleDelete={handleDelete}
+                    handleAddBook={handleAddBook}
+                    updatePurchase={updatePurchase}
+                    updatePurchaseWish={updatePurchaseWish}
+                    title={title}
+                  />
+                ) : (
+                  <BooksList
+                    books={books}
+                    addToCart={addToCart}
+                    addToWish={addToWish}
+                    updateWish={updateWish}
+                    handleDeleteWish={handleDeleteWish}
+                    handleAdminDelete={handleAdminDelete}
+                    handleDelete={handleDelete}
+                    updatePurchase={updatePurchase}
+                    updatePurchaseWish={updatePurchaseWish}
+                    title={title}
+                  />
+                )
               }
             />
             <Route

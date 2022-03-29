@@ -47,7 +47,7 @@ function WhatAccount() {
                 alignItems: "center",
               }}
             >
-              <Link to="/signup">
+              <Link to="/home/signup">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -83,7 +83,7 @@ function WhatAccount() {
                 delay={{ show: 250, hide: 400 }}
                 overlay={renderTooltip}
               >
-                <Link to="/signin">
+                <Link to="/home/signupwriter">
                   <Button variant="primary" style={{ width: 400, height: 50 }}>
                     Writer Account
                   </Button>
@@ -122,13 +122,13 @@ function WhatAccount() {
                 alignItems: "center",
               }}
             >
-              <Link to="/signup">
+              <Link to="/home/signupadmin">
                 <Button
                   type="primary"
                   htmlType="submit"
                   style={{ width: 400, height: 50 }}
                 >
-                  Editor Account
+                  Admin Account
                 </Button>
               </Link>
             </div>

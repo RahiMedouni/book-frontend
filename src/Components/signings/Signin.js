@@ -17,7 +17,7 @@ import axios from "axios";
 
 const theme = createTheme();
 
-export default function SignIn() {
+export default function SignIn({ accountType }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -40,6 +40,7 @@ export default function SignIn() {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        accountType("user");
         navigate("/home/account");
       })
       .catch(function (error) {
