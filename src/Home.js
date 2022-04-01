@@ -14,6 +14,7 @@ import Signup from "./Components/signings/Signup";
 import Signin from "./Components/signings/Signin";
 import SignUpAdmin from "./Components/signings/SignUpAdmin";
 import SigninAdmin from "./Components/signings/SigninAdmin";
+import AdminSider from "./Components/AdminSider";
 import AddBook from "./Components/AddBook";
 import Darkmode from "darkmode-js";
 import axios from "axios";
@@ -314,7 +315,7 @@ function Home() {
           alignItems: "center",
         }}
       >
-        <SubMenu />
+        {accountType === "user" ? <SubMenu /> : <AdminSider />}
         <div style={{ width: "100%", marginLeft: 250 }}>
           <Routes>
             <Route

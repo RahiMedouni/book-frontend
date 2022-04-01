@@ -2,7 +2,7 @@ import { FourGMobiledata } from "@mui/icons-material";
 import React, { useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 
-const AddQuiz = ({ handleAdd }) => {
+const AddQuiz = ({ handleAddQuiz }) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -11,6 +11,7 @@ const AddQuiz = ({ handleAdd }) => {
   const [two, setTwo] = useState("");
   const [three, setThree] = useState("");
   const [four, setFour] = useState("");
+  const [isCorrect, setIsCorrect] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +22,11 @@ const AddQuiz = ({ handleAdd }) => {
       three,
       four,
     };
-    handleAdd(newQuiz);
+    handleAddQuiz(newQuiz);
+  };
+
+  const handleCheck = () => {
+    setIsCorrect(!isCorrect);
   };
   return (
     <div className="adding-story">
@@ -58,7 +63,8 @@ const AddQuiz = ({ handleAdd }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={(e) => setOne(e.target.value)}
+                  onChange={handleCheck}
+                  value={isCorrect}
                 />
               </div>
               <div className="col-12">
@@ -73,7 +79,8 @@ const AddQuiz = ({ handleAdd }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={(e) => setTwo(e.target.value)}
+                  onChange={handleCheck}
+                  value={isCorrect}
                 />
               </div>
               <div className="col-12">
@@ -88,7 +95,8 @@ const AddQuiz = ({ handleAdd }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={(e) => setThree(e.target.value)}
+                  onChange={handleCheck}
+                  value={isCorrect}
                 />
               </div>
               <div className="col-12">
@@ -104,7 +112,8 @@ const AddQuiz = ({ handleAdd }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={(e) => setFour(e.target.value)}
+                  onChange={handleCheck}
+                  value={isCorrect}
                 />
               </div>
               <Button variant="primary" type="submit">

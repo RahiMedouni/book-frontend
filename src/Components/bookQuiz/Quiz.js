@@ -80,9 +80,12 @@ function Quiz() {
     setShowResults(false);
   };
 
+  const handleAddQuiz = (newQuiz) => {
+    setQuestions([...questions, newQuiz]);
+  };
   return (
     <div className="quiz">
-      <AddQuiz />
+      <AddQuiz handleAddQuiz={handleAddQuiz} />
       {/* 1. Header  */}
       <h1>USA Quiz 🇺🇸</h1>
 
@@ -113,10 +116,7 @@ function Quiz() {
           <ul>
             {questions[currentQuestion].options.map((option) => {
               return (
-                <li
-                  key={option.id}
-                  onClick={() => optionClicked(option.isCorrect)}
-                >
+                <li key={option.id} onClick={() => optionClicked(isCorrect)}>
                   {option.text}
                 </li>
               );
