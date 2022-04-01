@@ -21,6 +21,7 @@ const AddQuiz = ({ handleAddQuiz }) => {
       two,
       three,
       four,
+      isCorrect,
     };
     handleAddQuiz(newQuiz);
   };
