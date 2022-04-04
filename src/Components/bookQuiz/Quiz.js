@@ -116,7 +116,10 @@ function Quiz() {
           <ul>
             {questions[currentQuestion].options.map((option) => {
               return (
-                <li key={option.id} onClick={() => optionClicked(isCorrect)}>
+                <li
+                  key={option.id}
+                  onClick={() => optionClicked(option.isCorrect)}
+                >
                   {option.text}
                 </li>
               );

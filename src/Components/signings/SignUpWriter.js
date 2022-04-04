@@ -21,9 +21,10 @@ import axios from "axios";
 
 const theme = createTheme();
 
-export default function SignUpAdmin({ accountType }) {
-  const [adminname, setAdminname] = useState("");
+export default function SignUpWriter({ accountType }) {
+  const [writername, setWritername] = useState("");
   const [email, setEmail] = useState("");
+  const [task, setTask] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const [isFetchingSignup, setIsFetchingSignup] = useState(false);
@@ -32,6 +33,10 @@ export default function SignUpAdmin({ accountType }) {
     errorFound: false,
     message: "",
   });
+
+  const handleChange = (event) => {
+    setTask(event.target.value);
+  };
 
   const navigate = useNavigate();
 
@@ -48,7 +53,7 @@ export default function SignUpAdmin({ accountType }) {
   const handleSignupClick = () => {
     // fetching ...
     var data = JSON.stringify({
-      adminname,
+      writername,
       email,
       password1,
       password2,
@@ -56,7 +61,7 @@ export default function SignUpAdmin({ accountType }) {
 
     var config = {
       method: "post",
-      url: "http://localhost/api/admins/signupAdmin",
+      url: "http://localhost/api/writers/signupWriter",
       headers: {
         "Content-Type": "application/json",
       },
@@ -68,7 +73,7 @@ export default function SignUpAdmin({ accountType }) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
-        accountType("admin");
+        accountType("writer");
         navigate("/home/account");
         setIsFetchingSignup(false);
       })
@@ -99,7 +104,7 @@ export default function SignUpAdmin({ accountType }) {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-              Sign up Admin
+              Sign up Writer
             </Typography>
             <Box
               component="form"
@@ -110,14 +115,14 @@ export default function SignUpAdmin({ accountType }) {
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={12}>
                   <TextField
-                    value={adminname}
-                    onChange={(e) => setAdminname(e.target.value)}
+                    value={writername}
+                    onChange={(e) => setWritername(e.target.value)}
                     autoComplete="given-name"
-                    name="adminname"
+                    name="writername"
                     required
                     fullWidth
-                    id="adminname"
-                    label="Admin Name"
+                    id="writername"
+                    label="Writer Name"
                     autoFocus
                     val
                     defaultValue="Hello World"
@@ -134,6 +139,25 @@ export default function SignUpAdmin({ accountType }) {
                     name="email"
                     autoComplete="email"
                   />
+                </Grid>
+                <Grid item xs={12}>
+                  <Box sx={{ minWidth: 120 }}>
+                    <FormControl fullWidth>
+                      <InputLabel id="demo-simple-select-label">
+                        Task
+                      </InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={task}
+                        label="Task"
+                        onChange={handleChange}
+                      >
+                        <MenuItem value={"writer"}>Writer</MenuItem>
+                        <MenuItem value={"moderator"}>Moderator</MenuItem>
+                      </Select>
+                    </FormControl>
+                  </Box>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -187,8 +211,8 @@ export default function SignUpAdmin({ accountType }) {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to="/signin" variant="body2">
-                    Already have an account? Sign in
+                  <Link to="/signinwriter" variant="body2">
+                    Already have a writer account? Sign in
                   </Link>
                 </Grid>
               </Grid>
