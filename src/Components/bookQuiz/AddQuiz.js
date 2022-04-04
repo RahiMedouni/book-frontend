@@ -16,12 +16,13 @@ const AddQuiz = ({ handleAddQuiz }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newQuiz = {
-      question,
-      one,
-      two,
-      three,
-      four,
-      isCorrect,
+      text: question,
+      options: [
+        { id:0, text: one, isCorrect: isCorrect1 },
+        { id:1, text: two, isCorrect: isCorrect2 },
+        { id:2, text: three, isCorrect: isCorrect3 },
+        { id:3, text: four, isCorrect: isCorrect4},
+      ]
     };
     handleAddQuiz(newQuiz);
   };
