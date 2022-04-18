@@ -11,24 +11,53 @@ const AddQuiz = ({ handleAddQuiz }) => {
   const [two, setTwo] = useState("");
   const [three, setThree] = useState("");
   const [four, setFour] = useState("");
-  const [isCorrect, setIsCorrect] = useState(false);
+  const [isCorrect1, setIsCorrect1] = useState(false);
+  const [isCorrect2, setIsCorrect2] = useState(false);
+  const [isCorrect3, setIsCorrect3] = useState(false);
+  const [isCorrect4, setIsCorrect4] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const newQuiz = {
-      question,
-      one,
-      two,
-      three,
-      four,
-      isCorrect,
+      text: question,
+      options: [
+        { id: 0, text: one, isCorrect: isCorrect1 },
+        { id: 1, text: two, isCorrect: isCorrect2 },
+        { id: 2, text: three, isCorrect: isCorrect3 },
+        { id: 3, text: four, isCorrect: isCorrect4 },
+      ],
     };
     handleAddQuiz(newQuiz);
   };
 
-  const handleCheck = () => {
-    setIsCorrect(!isCorrect);
+  const handleCheck1 = () => {
+    setIsCorrect1(!isCorrect1);
   };
+
+  const handleCheck2 = () => {
+    setIsCorrect2(!isCorrect2);
+  };
+
+  const handleCheck3 = () => {
+    setIsCorrect3(!isCorrect3);
+  };
+
+  const handleCheck4 = () => {
+    setIsCorrect4(!isCorrect4);
+  };
+
+  const takeOut = () => {
+    setIsCorrect1(false);
+    setIsCorrect2(false);
+    setIsCorrect3(false);
+    setIsCorrect4(false);
+    setOne("");
+    setTwo("");
+    setThree("");
+    setFour("");
+    setQuestion("");
+  };
+
   return (
     <div className="adding-story">
       <Button variant="primary" onClick={handleShow}>
@@ -64,8 +93,8 @@ const AddQuiz = ({ handleAddQuiz }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={handleCheck}
-                  value={isCorrect}
+                  onChange={handleCheck1}
+                  value={isCorrect1}
                 />
               </div>
               <div className="col-12">
@@ -80,8 +109,8 @@ const AddQuiz = ({ handleAddQuiz }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={handleCheck}
-                  value={isCorrect}
+                  onChange={handleCheck2}
+                  value={isCorrect2}
                 />
               </div>
               <div className="col-12">
@@ -96,8 +125,8 @@ const AddQuiz = ({ handleAddQuiz }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={handleCheck}
-                  value={isCorrect}
+                  onChange={handleCheck3}
+                  value={isCorrect3}
                 />
               </div>
               <div className="col-12">
@@ -113,12 +142,15 @@ const AddQuiz = ({ handleAddQuiz }) => {
                 <input
                   type="checkbox"
                   className="form-check"
-                  onChange={handleCheck}
-                  value={isCorrect}
+                  onChange={handleCheck4}
+                  value={isCorrect4}
                 />
               </div>
-              <Button variant="primary" type="submit">
+              <Button variant="primary" type="submit" onClick={handleClose}>
                 Save question
+              </Button>
+              <Button variant="danger" onClick={takeOut}>
+                Next question
               </Button>
             </div>
           </form>

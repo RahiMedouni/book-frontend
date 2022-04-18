@@ -17,6 +17,7 @@ import SigninAdmin from "./Components/signings/SigninAdmin";
 import AdminSider from "./Components/AdminSider";
 import AddBook from "./Components/AddBook";
 import Darkmode from "darkmode-js";
+import Sidebar from "./Components/Sidebar";
 import axios from "axios";
 import { Link, animateScroll as scroll } from "react-scroll";
 
@@ -198,6 +199,10 @@ function Home() {
     setBooks(shuffleArray(books));
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem("wishedList", JSON.stringify(wishedList));
+  }, [wishedList]);
+
   const accountTypeHandler = (type) => {
     setAccountType(type);
   };
@@ -308,15 +313,17 @@ function Home() {
 
   return (
     <div>
-      <Header title={title} handleChange={handleChange} />
+      {/* <Header title={title} handleChange={handleChange} /> */}
+      <Sidebar />
       <div
         style={{
           display: "flex",
           alignItems: "center",
         }}
       >
-        {accountType === "user" ? <SubMenu /> : <AdminSider />}
-        <div style={{ width: "100%", marginLeft: 250 }}>
+        {/* {accountType === "user" ? <SubMenu /> : <AdminSider />} */}
+
+        <div style={{ width: "100%", marginTop: 80, marginLeft: 120 }}>
           <Routes>
             <Route
               path="/signup"
@@ -338,7 +345,20 @@ function Home() {
             <Route
               path="/booklist"
               element={
-                accountType === "admin" ? (
+                accountType === "user" ? (
+                  <BooksList
+                    books={books}
+                    addToCart={addToCart}
+                    addToWish={addToWish}
+                    updateWish={updateWish}
+                    handleDeleteWish={handleDeleteWish}
+                    handleAdminDelete={handleAdminDelete}
+                    handleDelete={handleDelete}
+                    updatePurchase={updatePurchase}
+                    updatePurchaseWish={updatePurchaseWish}
+                    title={title}
+                  />
+                ) : (
                   <BooksAdminList
                     books={books}
                     addToCart={addToCart}
@@ -352,19 +372,6 @@ function Home() {
                     updatePurchaseWish={updatePurchaseWish}
                     title={title}
                   />
-                ) : (
-                  <BooksList
-                    books={books}
-                    addToCart={addToCart}
-                    addToWish={addToWish}
-                    updateWish={updateWish}
-                    handleDeleteWish={handleDeleteWish}
-                    handleAdminDelete={handleAdminDelete}
-                    handleDelete={handleDelete}
-                    updatePurchase={updatePurchase}
-                    updatePurchaseWish={updatePurchaseWish}
-                    title={title}
-                  />
                 )
               }
             />
@@ -373,7 +380,7 @@ function Home() {
               element={<BooksDetails books={books} />}
             />
             <Route
-              path="/PurchasedItems"
+              path="/purchaseditems"
               element={
                 <PurchasedItems
                   purchasedBooks={purchasedBooks}

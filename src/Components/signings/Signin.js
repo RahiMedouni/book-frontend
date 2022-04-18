@@ -108,7 +108,7 @@ export default function SignIn({ accountType }) {
               </Button>
               <Grid container>
                 <Grid item>
-                  <Link to="/signup" variant="body2">
+                  <Link to="/home/signup" variant="body2">
                     {"Don't have an account? Sign Up"}
                   </Link>
                 </Grid>

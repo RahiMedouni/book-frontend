@@ -10,8 +10,8 @@ const BookCard = (props) => {
         width: 250,
         color: "black",
         background: "rgb(0,89,255,0.5)",
-        marginLeft: 10,
-        marginBottom: 10,
+        marginLeft: 20,
+        marginBottom: 20,
       }}
     >
       <Card.Body>

@@ -11,15 +11,13 @@ const AddBook = ({ handleAddBook }) => {
   const [isbn, setIsbn] = useState("");
   const [description, setDescription] = useState("");
   const [coverUrl, setCoverUrl] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState("Unknown");
   const [price, setPrice] = useState("");
-  const [addedToWish, setAddedToWish] = useState(false);
-  const [addedToPurchase, setAddedToPurchase] = useState(false);
 
-  function handleChangeImage(e) {
-    console.log(e.target.files);
-    setCoverUrl(URL.createObjectURL(e.target.files[0]));
-  }
+  // function handleChangeImage(e) {
+  //   console.log(e.target.files);
+  //   setCoverUrl(URL.createObjectURL(e.target.files[0]));
+  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -38,7 +36,7 @@ const AddBook = ({ handleAddBook }) => {
     handleAddBook(newBook);
   };
   return (
-    <div className="adding-movie">
+    <div className="adding-movie" style={{ textAlign: "center" }}>
       <Button variant="primary" onClick={handleShow}>
         Add Book
       </Button>
@@ -90,23 +88,35 @@ const AddBook = ({ handleAddBook }) => {
               value={description}
             />
             Add image:
-            <input type="file" onChange={handleChangeImage} value={coverUrl} />
-            {/* COVERURL:
+            {/* <input type="file" onChange={handleChangeImage} value={coverUrl} /> */}
             <input
               type="url"
               className="form-control"
               placeholder="enter url here"
               onChange={(e) => setCoverUrl(e.target.value)}
               value={coverUrl}
-            /> */}
-            <Form.Select aria-label="Default select example">
-              <option>Unknown</option>
-              <option value="1">Drama</option>
-              <option value="2">Action</option>
-              <option value="3">Comedy</option>
-              <option value="4">Horror</option>
-              <option value="5">Fiction</option>
+            />
+            Category:
+            <Form.Select
+              aria-label="Default select example"
+              onChange={(e) => setCategory(e.target.value)}
+              value={category}
+            >
+              <option value="Unknown">Unknown</option>
+              <option value="Drama">Drama</option>
+              <option value="Action">Action</option>
+              <option value="Comedy">Comedy</option>
+              <option value="Horror">Horror</option>
+              <option value="Fiction">Fiction</option>
             </Form.Select>
+            setPrice:
+            <input
+              type="number"
+              className="form-control"
+              placeholder="enter price here"
+              onChange={(e) => setPrice(e.target.value)}
+              value={price}
+            />
             <Button variant="primary" type="submit">
               Save Movie
             </Button>
