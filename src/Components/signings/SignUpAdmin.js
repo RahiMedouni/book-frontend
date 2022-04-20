@@ -68,6 +68,8 @@ export default function SignUpAdmin({ accountType }) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
+        //localStorage.clear("token")
         accountType("admin");
         navigate("/home/account");
         setIsFetchingSignup(false);

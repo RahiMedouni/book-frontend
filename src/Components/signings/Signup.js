@@ -64,6 +64,8 @@ export default function SignUp({ accountType }) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
+        //localStorage.clear("token")
         accountType("user");
         navigate("/home/account");
         setIsFetchingSignup(false);
@@ -183,7 +185,7 @@ export default function SignUp({ accountType }) {
               </Button>
               <Grid container justifyContent="flex-end">
                 <Grid item>
-                  <Link to="/signin" variant="body2">
+                  <Link to="/home/signin" variant="body2">
                     Already have an account? Sign in
                   </Link>
                 </Grid>

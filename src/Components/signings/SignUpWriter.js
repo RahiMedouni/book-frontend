@@ -73,6 +73,8 @@ export default function SignUpWriter({ accountType }) {
     axios(config)
       .then(function (response) {
         console.log(JSON.stringify(response.data));
+        localStorage.setItem("token", response.data.token);
+        //localStorage.clear("token")
         accountType("writer");
         navigate("/home/account");
         setIsFetchingSignup(false);

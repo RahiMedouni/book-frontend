@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Logout"];
 
-const ResponsiveAppBar = () => {
+const ResponsiveAppBar = ({ signoutUser }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 

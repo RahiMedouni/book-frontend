@@ -5,6 +5,7 @@ import BookList from "./Components/BookList";
 import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Routes, Route, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PurchasedItems from "./Components/PurchasedItems";
 import SubMenu from "./Components/SubMenu";
 import BookDetails from "./Components/BookDetails";
@@ -170,11 +171,15 @@ function Home() {
 
   const [purchasedBooks, setPurchasedBooks] = useState([]);
 
-  const [wishedList, setWishedList] = useState([]);
+  const [wishedList, setWishedList] = useState(
+    JSON.parse(localStorage.getItem("wishedList")) || []
+  );
 
   const [title, setTitle] = useState("");
 
   const [accountType, setAccountType] = useState("");
+
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   var axios = require("axios");
@@ -202,6 +207,15 @@ function Home() {
   useEffect(() => {
     localStorage.setItem("wishedList", JSON.stringify(wishedList));
   }, [wishedList]);
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    if (!token) navigate("/");
+  }, []);
+
+  const signoutUser = () => {
+    localStorage.removeItem("token");
+  };
 
   const accountTypeHandler = (type) => {
     setAccountType(type);
