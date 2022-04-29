@@ -16,7 +16,7 @@ const Purchase = (props) => {
       <Card.Body>
         <Card.Img
           variant="top"
-          src={props.book.posterUrl}
+          src={props.book.coverUrl}
           style={{ height: 210, width: 150, marginLeft: 35 }}
         />
         <Card.Title className="hideText" style={{ textAlign: "center" }}>
