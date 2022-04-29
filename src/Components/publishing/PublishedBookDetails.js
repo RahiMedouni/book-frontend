@@ -1,11 +1,7 @@
-import AddQuiz from "./bookQuiz/AddQuiz";
-import { Link } from "react-router-dom";
+const PublishedBookDetails = ({ params, authorBooks }) => {
+  const authorBook = authorBooks.find((elt) => elt.title === params.title);
+  console.log({ authorBooks });
 
-const BookDetails = ({ params, books }) => {
-  // const [questions, setQuestions] = useState([]);
-
-  const book = books.find((elt) => elt.title === params.title);
-  console.log({ books });
   return (
     <div>
       <div
@@ -16,7 +12,7 @@ const BookDetails = ({ params, books }) => {
           textAlign: "center",
         }}
       >
-        <h2>{book?.title}</h2>
+        <h2>{authorBook?.title}</h2>
       </div>
       <div
         style={{
@@ -27,19 +23,19 @@ const BookDetails = ({ params, books }) => {
         <table>
           <tr>
             <th>title</th>
-            <th>{book?.title}</th>
+            <th>{authorBook?.title}</th>
           </tr>
           <tr>
             <td>Author</td>
-            <td>{book?.author}</td>
+            <td>{authorBook?.author}</td>
           </tr>
           <tr>
             <td>number of pages</td>
-            <td>{book?.pages}</td>
+            <td>{authorBook?.pages}</td>
           </tr>
           <tr>
             <td>price</td>
-            <td>{book?.price + "$"} </td>
+            <td>{authorBook?.price + "$"} </td>
           </tr>
           <tr>
             <td>Island Trading</td>
@@ -55,12 +51,6 @@ const BookDetails = ({ params, books }) => {
           </tr>
         </table>
       </div>
-      <AddQuiz />
-      <span>
-        <Link to="/quiz">
-          <p>See Quiz</p>
-        </Link>
-      </span>
       {/* <img
         src={book?.coverUrl}
         alt="book's cover"
@@ -72,4 +62,4 @@ const BookDetails = ({ params, books }) => {
   );
 };
 
-export default BookDetails;
+export default PublishedBookDetails;

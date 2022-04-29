@@ -8,7 +8,7 @@ function Quiz() {
     {
       text: "Did you read the book?",
       options: [
-        { id: 0, text: "YES", isCorrect: false },
+        { id: 0, text: "YES", isCorrect: true },
         { id: 1, text: "NO", isCorrect: false },
       ],
     },

@@ -169,7 +169,9 @@ function Home() {
     },
   ]);
 
-  const [purchasedBooks, setPurchasedBooks] = useState([]);
+  const [purchasedBooks, setPurchasedBooks] = useState(
+    JSON.parse(localStorage.getItem("purchasedBooks")) || []
+  );
 
   const [wishedList, setWishedList] = useState(
     JSON.parse(localStorage.getItem("wishedList")) || []
@@ -209,8 +211,12 @@ function Home() {
   }, [wishedList]);
 
   useEffect(() => {
+    localStorage.setItem("purchasedBooks", JSON.stringify(purchasedBooks));
+  }, [purchasedBooks]);
+
+  useEffect(() => {
     let token = localStorage.getItem("token");
-    if (!token) navigate("/");
+    if (!token) navigate("/home/account");
   }, []);
 
   const signoutUser = () => {
@@ -328,7 +334,7 @@ function Home() {
   return (
     <div>
       {/* <Header title={title} handleChange={handleChange} /> */}
-      <Sidebar />
+      <Sidebar signoutUser={signoutUser} />
       <div
         style={{
           display: "flex",

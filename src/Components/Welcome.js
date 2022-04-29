@@ -16,6 +16,9 @@ function Welcome() {
       <Link to="/quiz">
         <h3>Take Quiz</h3>
       </Link>
+      <Link to="/publish/approvebooks">
+        <p>Publish With Us</p>
+      </Link>
 
       <div>
         <h2>Add Image:</h2>

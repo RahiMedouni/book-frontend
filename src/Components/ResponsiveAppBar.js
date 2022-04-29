@@ -125,14 +125,13 @@ const ResponsiveAppBar = ({ signoutUser }) => {
               <IconButton
                 size="large"
                 sx={{ p: 0, marginRight: 10, marginTop: 2 }}
+                onClick={signoutUser}
               >
                 <AccountCircleIcon />
               </IconButton>
             </Tooltip>
             <br />
-            <Link to="/home/signin">
-              <p style={{ fontSize: 10 }}>LOGIN</p>
-            </Link>
+            <p style={{ fontSize: 10 }}>LOGOUT</p>
           </Box>
           {/* <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
