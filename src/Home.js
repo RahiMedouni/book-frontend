@@ -219,6 +219,10 @@ function Home() {
     if (!token) navigate("/home/account");
   }, []);
 
+  const signinUser = () => {
+    localStorage.setItem("token");
+  };
+
   const signoutUser = () => {
     localStorage.removeItem("token");
   };
@@ -334,7 +338,7 @@ function Home() {
   return (
     <div>
       {/* <Header title={title} handleChange={handleChange} /> */}
-      <Sidebar signoutUser={signoutUser} />
+      <Sidebar signoutUser={signoutUser}  />
       <div
         style={{
           display: "flex",
@@ -347,11 +351,11 @@ function Home() {
           <Routes>
             <Route
               path="/signup"
-              element={<Signup accountType={accountTypeHandler} />}
+              element={<Signup accountType={accountTypeHandler} signinUser={signinUser} />}
             />
             <Route
               path="/signin"
-              element={<Signin accountType={accountTypeHandler} />}
+              element={<Signin accountType={accountTypeHandler} signinUser={signinUser} />}
             />
             <Route
               path="/signupadmin"
